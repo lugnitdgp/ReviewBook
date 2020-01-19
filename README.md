@@ -1,7 +1,7 @@
 # ReviewBook
-<br>
-![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)
-<br>
+
+![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)<br>
+
 A social media app for movies, games and tv series reviews
 
 > The app allows you to review movies, games and tv shows. It allows you to follow users and your feed shows the latest reviews by users.It has a login feature.
@@ -12,7 +12,7 @@ A social media app for movies, games and tv series reviews
 1. Create a **virtual environment** with venv (install virtualenv, if its not installed).
 
     ```
-    virtualenv reviewbook
+    venv reviewbook
 
     ```
 
