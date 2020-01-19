@@ -46,7 +46,7 @@ class MovieFollow(models.Model):
         super(MovieFollow,self).delete(*args,**kwargs)
 
 class MovieReview(models.Model):
-    title = models.CharField(max_length=50, null=False, blank=False)
+    title = models.CharField(max_length=500, null=False, blank=False)
     body = models.TextField(max_length=5000, null=False, blank=False)
     rating = models.IntegerField()
     date_published = models.DateTimeField(auto_now_add=True, verbose_name="Date Reviewed")

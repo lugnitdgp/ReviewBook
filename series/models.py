@@ -65,7 +65,7 @@ def submission_delete(sender, instance, **kwargs):
     instance.image.delete(False)
 
 class EpisodeReview(models.Model):
-    title =              models.CharField(max_length=50, null=False, blank=False)
+    title =              models.CharField(max_length=500, null=False, blank=False)
     body =               models.TextField(max_length=5000, null=False, blank=False)
     rating =             models.IntegerField(default=1)
     date_published =     models.DateTimeField(auto_now_add=True, verbose_name="Date Reviewed")
@@ -88,7 +88,7 @@ class EpisodeReview(models.Model):
         episode.save()
 
     def delete(self, *args, **kwargs):
-        episode = Episode.objects.get(id=self.game_id)
+        episode = Episode.objects.get(id=self.episode_id)
         r= self.rating
         episode.totalreview = episode.totalreview - 1
         episode.totalrating = episode.totalrating - r
