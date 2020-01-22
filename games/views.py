@@ -68,12 +68,13 @@ def edit_review(request, slug):
             obj.update()
             context['success_message'] = "Updated"
             review = obj
+            return render(request,'base/home.html', context)
     form = UpdateReviewForm(
             initial = {
                     "title": review.title,
                     "body": review.body,
                     "rating": review.rating,
-                }
+                } 
     )
 
     context['form'] = form
