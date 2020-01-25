@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'games',
     'movies',
     'series',
+    'crispy_forms',
+    
 ]
 
 MIDDLEWARE = [

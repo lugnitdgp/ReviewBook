@@ -1,3 +1,17 @@
+<head>
+  <style>
+  .form{
+    border: grey 2px solid;
+    border-radius: 5px;
+  }
+  .widfull{
+    width:100%;
+  }
+  #div_id_title{
+    width:100%;
+  }
+  </style>
+</head>
 {% extends 'base.html' %}
 
 {% block content %}
@@ -7,16 +21,22 @@
     Your message was submitted successfully. Thank you.
   </p>
 {% else %}
+  <div class="col-md-4 offset-4 box well form">
+    <div class="container">
+      <h1 class="text-center">Review update</h1>
+      </div>
+    {% load crispy_forms_tags %}
   <form method="post">
-  <table>
-    {{ form.as_table }}
-    <tr>
-      <td>&nbsp;</td>
-      <td><input type="submit" value="Submit"></td>
-    </tr>
-    </table>
+   <div class="col-md-12">
+   {{form|crispy}}
+    <br>
+  <input type="submit" class="btn btn-primary widfull" value="Submit">
+    
+  
     {% csrf_token %}
+   </div>
   </form>
+  </div>
 {% endif %}
 
 {% endblock content %}

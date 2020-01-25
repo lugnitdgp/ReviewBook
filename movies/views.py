@@ -72,13 +72,7 @@ def edit_review(request, slug):
             obj.update()
             context['success_message'] = "Updated"
             review = obj
-            query = ""
-            if request.GET:
-              query = request.GET['q']
-
-            context = get_queryset(str(query))
-            context['query'] = str(query)
-            return render(request,'home.html', context)
+            return redirect('base:home')
     form = UpdateReviewForm(
             initial = {
                     "title": review.title,
@@ -90,40 +84,4 @@ def edit_review(request, slug):
     context['form'] = form
     return render(request, 'movies/edit_review.html', context)
 
-def get_queryset(query=None):
-    queryset = {}
-    queries = query.split(" ")
-    if query:
-        for q in queries:
-            movies = Movie.objects.filter(
-                    Q(name__icontains=q),
-            ).distinct()
-            games = Game.objects.filter(
-                    Q(name__icontains=q),
-            ).distinct()
-            series = Series.objects.filter(
-                    Q(name__icontains=q),
-            ).distinct()
-            episodes = Episode.objects.filter(
-                    Q(episode_name__icontains=q),
-            ).distinct()
-            users = Account.objects.filter(
-                    Q(first_name__icontains=q),
-            ).distinct()
-
-            queryset['movies'] = movies
-            queryset['games'] = games
-            queryset['series'] = series
-            queryset['episodes'] = episodes
-            queryset['users'] = users
-    else:
-        moviereview = MovieReview.objects.order_by('-date_published')
-        gamereview = GameReview.objects.order_by('-date_published')
-        episodereview = EpisodeReview.objects.order_by('-date_published')
-
-        queryset['moviereview'] = moviereview
-        queryset['gamereview'] = gamereview
-        queryset['episodereview'] = episodereview
-
-    return queryset
 

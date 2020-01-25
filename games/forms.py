@@ -24,6 +24,6 @@ class UpdateReviewForm(forms.ModelForm):
 
         if commit:
             review.save()
-            return redirect('games:index')
+            
 
         return review
