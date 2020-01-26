@@ -63,12 +63,14 @@
 		{% endif %}
 
 		{% if users %}
-			<h3>Users</h3>
+			
 	    {% for user in users %}
 			<div class="card">
 				<p>
 					<a href="{% url 'accounts:account_view' user.username %}"
-					<h2 class="card-title">{{user.first_name}} {{user.last_name}}</h2>
+					<h2 class="card-title">
+						<h3>Users</h3><br>
+						{{user.first_name}} {{user.last_name}} {{user}}</h2>
 					</a>
 				</p>
 			</div>

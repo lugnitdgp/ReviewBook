@@ -21,7 +21,9 @@
 				{% endif %}
 			</div>
 			<div class="card-footer text-muted">
-			  Updated on {{gamereview.date_updated}} by {{gamereview.author}}
+			  Updated on {{gamereview.date_updated}} by <a href="{% url 'accounts:account_view' user.username %}"
+			  <h2 class="card-title">{{user.first_name}} {{user.last_name}}</h2>
+			  </a>{{gamereview.author}}
 			</div>
 		</div>
 	</div>
