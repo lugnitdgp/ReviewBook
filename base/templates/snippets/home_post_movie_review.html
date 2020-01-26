@@ -22,7 +22,9 @@
 			</div>
 			<div class="card-footer text-muted">
 			  Updated on {{moviereview.date_updated}} by {{moviereview.author}}
-			</div>
+			</div>  Updated on {{moviereview.date_updated}} by <a href="{% url 'accounts:account_view' user.username %}"
+			<h2 class="card-title">{{user.first_name}} {{user.last_name}}</h2>
+			</a> {{moviereview.author}}
 		</div>
 	</div>
 </div>
