@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'movies',
     'series',
     'crispy_forms',
+    'social_django',
     
 ]
 
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware', 
 ]
 
 ROOT_URLCONF = 'ReviewBook.urls'
@@ -69,6 +71,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -77,6 +81,17 @@ TEMPLATES = [
 AUTH_USER_MODEL = 'accounts.Account'
 
 WSGI_APPLICATION = 'ReviewBook.wsgi.application'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_GITHUB_KEY = 'd20fb28612b6f9083e48'
+SOCIAL_AUTH_GITHUB_SECRET = 'a5cc583aacc10ed0afce76fa4f99bd70a63dc962'
 
 
 # Database
