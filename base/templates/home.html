@@ -29,32 +29,16 @@
 </style>
 <div class="container left-column">
 	<div class="row">
-
-		<!-- Review feed -->
-			<div class="left-column col-lg-9">
-
-				<div class="card m-auto d-flex flex-column p-3">
-					<div class="headers">
-						<h3>Explore:</h3>
-						<a href="{% url 'movies:select_movie' %}"><h4 class="inline-block">     Movies</h4></a>
-						<a href="{% url 'games:select_game' %}"><h4>     Games</h4></a>
-						<a href="{% url 'series:select_series' %}"><h4>     Series</h4></a>
-					</div>
-				</div>
-
-				<!-- Top 'Give Review' bar -->
-				<div class="mb-3">
-					<div class="card m-auto d-flex flex-column p-3">
-						<p class="lead">Watched a Movie or an Episode or Played a Game? Review it now!</p>
-						<p class="m-auto"><a class="btn btn-primary" href="{% url 'base:select_category' %}">Post a Review</a></p>
-					</div>
-				</div>
-			<!-- end Top 'create post' bar -->
+       <div class="col-md-8">
+		
 
 		{% if moviereview or gamereview or episodereview %}
 			<div>
 				<!-- Movie Reviews -->
+				{%if moviereview %}
 				<h1>Movie Reviews</h1>
+				{%endif%}
+
 				<div class="container">
 					{% for moviereview in moviereview %}
 						<div class="review-post-container">
@@ -64,7 +48,9 @@
 				</div>
 
 				<!-- Game Reviews -->
+				{%if gamereview%}
 				<h1>Game Reviews</h1>
+				{%endif%}
 				<div class="container">
 					{% for gamereview in gamereview %}
 						<div class="review-post-container">
@@ -74,7 +60,9 @@
 				</div>
 
 				<!-- Episode Review -->
+				{%if episodereview%}
 				<h1>Episode Reviews</h1>
+				{%endif%}
 				<div class="container">
 					{% for episodereview in episodereview %}
 						<div class="review-post-container">
@@ -85,7 +73,49 @@
 
 			</div>
 
-		{% endif %}
+		     {% endif %}
+		</div>
+
+		   
+
+		      <div class="col-md-4">
+
+        		<!-- Search Widget -->
+					<div class="card my-4">
+					<h5 class="card-header">Post a Review</h5>
+					<div class="card-body">
+						<p class="lead"><strong>Watched a Movie or an Episode or Played a Game? Review it now!</strong></p>
+						<p class="ml-5 pl-5"><a class="btn btn-primary center" href="{% url 'base:select_category' %}">Post a Review</a></p
+						</div>
+					</div>
+					</div>
+
+					<!-- Categories Widget -->
+					<div class="card my-4">
+					<h5 class="card-header">Categories</h5>
+					<div class="card-body">
+						<div class="row">
+						<div class="col-lg-6">
+							<ul class="list-unstyled mb-0">
+						 <li><a href="{% url 'movies:select_movie' %}"><h4 class="inline-block">     Movies</h4></a></li>
+						 <li><a href="{% url 'games:select_game' %}"><h4>     Games</h4></a></li>
+						 <li><a href="{% url 'series:select_series' %}"><h4>     Series</h4></a></li>
+							</ul>
+						</div>
+						
+						</div>
+					</div>
+					</div>
+
+					<!-- Side Widget -->
+					<div class="card my-4">
+					<h5 class="card-header">Side Widget</h5>
+					<div class="card-body">
+						You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+					</div>
+					</div>
+
+          
 	</div>
 </div>
 
