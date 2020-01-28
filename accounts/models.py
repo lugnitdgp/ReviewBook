@@ -61,7 +61,7 @@ class Account(AbstractBaseUser):
     FollowedBy= models.ManyToManyField(settings.AUTH_USER_MODEL,related_name= 'Users following+')
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username','first_name','last_name','dob']
+    REQUIRED_FIELDS = ['username','first_name','last_name']
 
     objects = MyAccountManager()
 

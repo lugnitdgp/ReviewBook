@@ -1,4 +1,6 @@
 from django import forms
+from games import views
+from django.shortcuts import redirect
 
 from games.models import GameReview, Game
 
@@ -22,5 +24,6 @@ class UpdateReviewForm(forms.ModelForm):
 
         if commit:
             review.save()
+            
 
         return review

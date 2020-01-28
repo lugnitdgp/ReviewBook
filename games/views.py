@@ -3,7 +3,10 @@ from django.urls import reverse
 from games.models import GameReview, Game
 from games.forms import GiveReviewForm, UpdateReviewForm
 from accounts.models import Account
-
+from base import views
+from movies.models import MovieReview, Movie
+from games.models import GameReview, Game
+from series.models import EpisodeReview, Series, Episode
 def give_game_review(request, game_id):
 
     context = {}
@@ -48,8 +51,13 @@ def details(request,game_id):
 def review_detail(request, slug):
     context = {}
     review = get_object_or_404(GameReview, slug=slug)
+    star = get_object_or_404(Game)
+    count=int(star.avgrating)
     context['review']=review
-
+    context['range']=range(1,count)
+    context['range2']=range(count,10)
+    
+    
     return render(request, 'games/review_detail.html', context)
 
 def edit_review(request, slug):
@@ -68,13 +76,15 @@ def edit_review(request, slug):
             obj.update()
             context['success_message'] = "Updated"
             review = obj
+            return redirect('base:home')
     form = UpdateReviewForm(
             initial = {
                     "title": review.title,
                     "body": review.body,
                     "rating": review.rating,
-                }
+                } 
     )
 
     context['form'] = form
     return render(request, 'games/edit_review.html', context)
+

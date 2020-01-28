@@ -3,7 +3,10 @@ from django.urls import reverse
 from movies.models import MovieReview, Movie
 from movies.forms import GiveReviewForm, UpdateReviewForm
 from accounts.models import Account
-
+from base import views
+from movies.models import MovieReview, Movie
+from games.models import GameReview, Game
+from series.models import EpisodeReview, Series, Episode
 def index(request):
     movie_list= Movie.objects.order_by('-name')
     context = {'movie_list':movie_list}
@@ -69,6 +72,7 @@ def edit_review(request, slug):
             obj.update()
             context['success_message'] = "Updated"
             review = obj
+            return redirect('base:home')
     form = UpdateReviewForm(
             initial = {
                     "title": review.title,
@@ -76,6 +80,8 @@ def edit_review(request, slug):
                     "rating": review.rating,
                 }
     )
-
+    
     context['form'] = form
     return render(request, 'movies/edit_review.html', context)
+
+

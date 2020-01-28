@@ -10,31 +10,41 @@
   .container{
       padding: 20px;
   }
-
+ 
+  .checked{
+    color: yellow;
+  }
 </style>
-
-<div class="container">
-  <div class="row">
-
-    <!--Review Post-->
-    <div class="card m-auto">
-      <img class="card-img-top" src="{{review.movie.image.url}}">
-      <div class="card-body my-2">
-        <h2>Movie: {{review.movie.name}}</h2>
-        <h4>{{review.title}}</h4>
-        <p>Ratings: {{review.rating}}/10</p>
-        <p class="card-text">{{review.body}}</p>
-        {% if review.author == request.user %}
-          <a href="{% url 'movies:edit_review' review.slug %}" class="btn btn-primary">Edit</a>
-        {% endif %}
-      </div>
-      <div class="card-footer text-muted">
-        Posted on {{review.date_published}} by
-        <a href="{% url 'accounts:account_view' review.author.username %}">{{review.author.first_name}} {{review.author.last_name}}</a>, last updated on {{review.date_updated}}
-      </div>
-    </div>
-    <!--End Review Post-->
+<div class=row">
+  <div class="col-md-8">
+        <h1 class="my-4 offset-2">Game details
+          <small>-Reviewbook</small>
+        </h1>
+        <div class="card mb-4 offset-2">
+          <img class="card-img-top" src="{{review.movie.image.url}}" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title">Game: {{review.movie.name}}</h2>
+            <hr style="border:3px solid #f1f1f1">
+            <p class="card-text">{{review.body}}</p>
+            <hr style="border:3px solid #f1f1f1">
+            <div>
+               <span class="heading">User Rating</span>
+                {% for i in range%}
+                <span class="fa fa-star checked"></span>
+                {% endfor %}
+                {% for i in range2%}
+                <span class="fa fa-star"></span>
+                {% endfor %}
+                <p>{{review.movie.avgrating}} average based on {{review.movie.totalreview}} reviews.</p>
+                <hr style="border:3px solid #f1f1f1">
+            </div>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on {{review.date_published}} by
+            <a href="{% url 'accounts:account_view' review.author.username %}">{{review.author.first_name}} {{review.author.last_name}}</a>, last updated on {{review.date_updated}}
+          </div>
+        </div>
+      <!--End Review Post-->
   </div>
 </div>
-
 {% endblock content %}

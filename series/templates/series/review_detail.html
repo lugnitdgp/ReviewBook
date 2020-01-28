@@ -36,3 +36,58 @@
 </div>
 
 {% endblock content %}
+
+{% extends 'base.html' %}
+
+{% block content %}
+<style type="text/css">
+
+  .card{
+      max-width: 700px;
+  }
+
+  .container{
+      padding: 20px;
+  }
+ 
+  .checked{
+    color: yellow;
+  }
+</style>
+<div class=row">
+  <div class="col-md-8">
+        <h1 class="my-4 offset-2">Game details
+          <small>-Reviewbook</small>
+        </h1>
+
+        <div class="card mb-4 offset-2">
+          <img class="card-img-top" src="{{review.episode.image.url}}" alt="Card image cap">
+          <div class="card-body">
+            <h1 class="card-title">Game: {{review.episode.show_name.name}} - Season {{review.episode.season_number}}</h1>
+             <h2>Episode {{review.episode.episode_number}}: {{review.episode.episode_name}}</h2>
+            <hr style="border:3px solid #f1f1f1">
+            <p class="card-text">{{review.body}}</p>
+            <hr style="border:3px solid #f1f1f1">
+            <div>
+               <span class="heading">User Rating</span>
+                {% for i in range%}
+                <span class="fa fa-star checked"></span>
+                {% endfor %}
+                {% for i in range2%}
+                <span class="fa fa-star"></span>
+                {% endfor %}
+                <p>{{review.series.avgrating}} average based on {{review.series.totalreview}} reviews.</p>
+                <hr style="border:3px solid #f1f1f1">
+            </div>
+          </div>
+          <div class="card-footer text-muted">
+             Posted on {{review.date_published}} by {{review.author.username}}, last updated on {{review.date_updated}}
+          </div>
+        </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}
+
