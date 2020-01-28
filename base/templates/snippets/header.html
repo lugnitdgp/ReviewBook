@@ -95,19 +95,6 @@
   -webkit-perspective: 1000;
   perspective: 1000;
 }
-.search__field::-moz-placeholder {
-  position: relative;
-  top: 0;
-  left: 0;
-  transition-property: top, color;
-  transition-duration: .1s;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  perspective: 1000;
-}
 .search__field:-ms-input-placeholder {
   position: relative;
   top: 0;
@@ -145,16 +132,8 @@
   opacity: 1;
   visibility: visible !important;
 }
-.search__field:-ms-input-placeholder[style*=hidden] {
-  color: #83b0c1;
-  font-size: .65em;
-  font-weight: normal;
-  top: -20px;
-  opacity: 1;
-  visibility: visible !important;
-}
 
-   
+
 
 
 </style>
@@ -166,52 +145,45 @@
 <!-- Header -->
 
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
 	<a class="navbar-brand pr-4 " href="#">Reviewbook</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	  </button>
 
-	  
+
 	  <form class="form-inline my-5 my-lg-0 pl-4" method="get" action="{% url 'base:home' %}">
 		<div class="search__wrapper">
 			<input type="text" name="q" id="id_q" placeholder="Search for..." class="search__field">
 			<button type="submit" class="fa fa-search search__icon"></button>
-		  </div>
+		</div>
 	  </form>
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav navbar-right">
-		  <li class="nav-item">
-			  <h5 class="my-0 mr-md-auto font-weight-normal pt-2">
-				  {% if request.user.is_authenticated %}
-					  <p class="m-auto">Hello,{{request.user.username}}</p>
-				  {% endif %}
-			  </h5>
-		  </li>
-		  {% if request.user.is_authenticated %}
+		{% if request.user.is_authenticated %}
+			<li class="nav-item">
+				<h3>Hi,{{request.user.first_name}}</h3>
+			</li>
 			<li class="nav-item active"><a class="text-white nav-link" href="{% url 'base:home' %}">Home<span class="sr-only">(current)</span></a>
 			</li>
-			<li class="nav-item">	
+			<li class="nav-item">
 			<a class="text-white nav-link" href="{% url 'accounts:account_view' request.user.username %}">Account</a>
 			</li>
-			<li class="nav-item"> 
+			<li class="nav-item">
 			<a class="text-white nav-link" href="{% url 'accounts:logout' %}">Logout</a>
 			</li>
-	{% else %}
-	<li class="nav-item active">
-		<a class="text-white nav nav-link" href="{% url 'base:home' %}">Home<span class="sr-only">(current)</span></a>
-	</li>
-	<li class="nav-item">
-		<a class="text-white nav-link" href="{% url 'accounts:login' %}">Login</a>
-	</li>
-	<li class="nav-item active">
-		<a class="btn btn-outline-primary" href="{% url 'accounts:register' %}">Register</a>
-	</li>
-	{% endif %}
-
-		  
+		{% else %}
+			<li class="nav-item active">
+				<a class="text-white nav nav-link" href="{% url 'base:home' %}">Home<span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="text-white nav-link" href="{% url 'accounts:login' %}">Login</a>
+			</li>
+			<li class="nav-item active">
+				<a class="btn btn-outline-primary" href="{% url 'accounts:register' %}">Register</a>
+			</li>
+		{% endif %}
 		</ul>
 	</div>
-  </nav>
-</div>
+</nav>
 <!-- End Header -->

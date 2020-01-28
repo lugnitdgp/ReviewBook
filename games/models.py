@@ -30,7 +30,7 @@ class Game(models.Model):
 
 class GameReview(models.Model):
     title =              models.CharField(max_length=500, null=False, blank=False)
-    body =               models.CharField(max_length=500, null=False, blank=False)
+    body =               models.TextField(max_length=5000, null=False, blank=False)
     rating =             models.IntegerField(default=1)
     date_published =     models.DateTimeField(auto_now_add=True, verbose_name="Date Reviewed")
     date_updated =       models.DateTimeField(auto_now=True, verbose_name="Last Updated")

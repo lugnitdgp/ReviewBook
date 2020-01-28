@@ -4,7 +4,7 @@ from movies.models import Movie, MovieFollow
 from django.conf import settings
 
 class MyAccountManager(BaseUserManager):
-    def create_user(self, email, username, first_name, last_name, dob,  password=None):
+    def create_user(self, email, username, first_name, last_name, password=None):
         if not email:
             raise ValueError("Users must have an email address")
         if not username:
@@ -13,29 +13,25 @@ class MyAccountManager(BaseUserManager):
             raise ValueError("Users must enter First Name")
         if not last_name:
             raise ValueError("Users must enter Last Name")
-        if not dob:
-            raise ValueError("Users must enter Date of Birth")
 
         user = self.model(
                 email=self.normalize_email(email),
                 username=username,
                 first_name=first_name,
                 last_name=last_name,
-                dob=dob,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, first_name, last_name, dob,  password):
+    def create_superuser(self, email, username, first_name, last_name, password):
         user = self.create_user(
                 email=self.normalize_email(email),
                 username=username,
                 password=password,
                 first_name=first_name,
                 last_name=last_name,
-                dob=dob,
         )
 
         user.is_admin=True
@@ -55,11 +51,11 @@ class Account(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
     first_name =   models.CharField(max_length=100)
     last_name =    models.CharField(max_length=100)
-    dob =          models.DateField()
+    dob =          models.DateField(null=True)
     moviesfollowed= models.ManyToManyField(Movie)
     Following= models.ManyToManyField(settings.AUTH_USER_MODEL, related_name= 'Users being follwed+')
     FollowedBy= models.ManyToManyField(settings.AUTH_USER_MODEL,related_name= 'Users following+')
-    
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username','first_name','last_name']
 
