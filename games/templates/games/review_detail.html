@@ -20,7 +20,6 @@
         <h1 class="my-4 offset-2">Game details
           <small>-Reviewbook</small>
         </h1>
-
         <div class="card mb-4 offset-2">
           <img class="card-img-top" src="{{review.game.image.url}}" alt="Card image cap">
           <div class="card-body">
@@ -41,12 +40,11 @@
             </div>
           </div>
           <div class="card-footer text-muted">
-             Posted on {{review.date_published}} by {{review.author.username}}, last updated on {{review.date_updated}}
+            Posted on {{review.date_published}} by
+            <a href="{% url 'accounts:account_view' review.author.username %}">{{review.author.first_name}} {{review.author.last_name}}</a>, last updated on {{review.date_updated}}
           </div>
         </div>
-  </div>
-</div>
-
-
-
+      <!--End Review Post-->
+   </div>
+ </div>
 {% endblock content %}
