@@ -10,10 +10,11 @@ from accounts.models import Account
 def base(request):
     return render(request, 'base.html')
 
-def home(request):
 
+def search(request):
     context = {}
 
+    
     query = ""
 
     if request.GET:
@@ -21,13 +22,45 @@ def home(request):
 
     context = get_queryset(str(query))
     context['query'] = str(query)
+    
+    return render(request, 'search_list.html', context)
+
+def home(request):
+
+    context = {}
+    moviereview=[]
+    gamereview=[]
+    episodereview=[]
+    movieitems=MovieReview.objects.values('movie','id')
+    t={item['movie'] for item in movieitems}
+    for h in t:
+        obbm = MovieReview.objects.filter(movie=h)
+        n=len(obbm)
+        moviereview.append([obbm,range(1,n)])
+    
+    gameitems=GameReview.objects.values('game','id')
+    t={item['game'] for item in gameitems}
+    for h in t:
+        obbg = GameReview.objects.filter(game=h)
+        n=len(obbg)
+        gamereview.append([obbg, range(1,n)])
+    
+    episodes=EpisodeReview.objects.values('episode','id')
+    t={item['episode'] for item in episodes}
+    for h in t:
+        obbe = EpisodeReview.objects.filter(game=h)
+        n=len(obbe)
+        gamereview.append([obbe, range(1,n)])
+    
+
+    context={'gamereview':gamereview,'moviereview':moviereview,'episodereview':episodereview}
 
     return render(request, 'home.html', context)
 
 def select_category(request):
     return render(request, 'select_category.html')
 
-def get_queryset(query=None):
+def get_queryset(query):
     queryset = {}
     queries = query.split(" ")
     if query:
@@ -53,13 +86,7 @@ def get_queryset(query=None):
             queryset['series'] = series
             queryset['episodes'] = episodes
             queryset['users'] = users
-    else:
-        moviereview = MovieReview.objects.order_by('-date_published')
-        gamereview = GameReview.objects.order_by('-date_published')
-        episodereview = EpisodeReview.objects.order_by('-date_published')
 
-        queryset['moviereview'] = moviereview
-        queryset['gamereview'] = gamereview
-        queryset['episodereview'] = episodereview
+       
 
     return queryset

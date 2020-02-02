@@ -11,9 +11,6 @@
 		background-color: #fff;
 		margin-bottom:20px;
 	}
-	.container{
-		margin-top: 100px;
-	}
 	.left-column{
 		padding:20px;
 	}
@@ -29,6 +26,11 @@
 	.headers h3, .headers h4{
 		display: inline-block;
 	}
+	.card{
+		
+		border-radius:10px;
+	}
+	
 </style>
 <div class="container left-column">
 	<div class="row">
@@ -36,47 +38,97 @@
 		
 
 		{% if moviereview or gamereview or episodereview %}
-			<div>
+            <div>
 				<!-- Movie Reviews -->
 				{%if moviereview %}
 				<h1>Movie Reviews</h1>
 				{%endif%}
 
+						
 				<div class="container">
-					{% for moviereview in moviereview %}
-						<div class="review-post-container">
-							{% include 'snippets/home_post_movie_review.html' with moviereview=moviereview %}
+					{% for mitem,range in moviereview %}
+					    <div class="card mb-4">
+							<img class="card-img-top" src="{{mitem.0.movie.image.url}}" alt="Card image cap">
+							<div class="card-body">
+                              <a href="{% url 'movie:review_detail' mitem.0.slug mitem.0.movie.id %}">
+                              <h2 class="card-title">Game: {{mitem.0.movie.name}}</h2>
+							  </a>
+							  <hr style="border:3px solid #f1f1f1">
+							  <p class="card-text">{{mitem.0.movie.description}}</p>
+							   <hr style="border:3px solid #f1f1f1">
+						      
+							</div>
+							<div class="card-footer text-muted">
+								Posted on {{review.date_published}} by
+								<a href="{% url 'accounts:account_view' mitem.0.author.username %}">{{mitem.0.author.first_name}} {{mitem.0.author.last_name}}</a>, last updated on {{mitem.0.date_updated}}
+							</div>
+									
 						</div>
-					{% endfor %}
+
+					{% endfor %}		
 				</div>
 
 				<!-- Game Reviews -->
 				{%if gamereview%}
-				<h1>Game Reviews</h1>
+				<h1> Game Reviews</h1>
 				{%endif%}
+				
 				<div class="container">
-					{% for gamereview in gamereview %}
-						<div class="review-post-container">
-							{% include 'snippets/home_post_game_review.html' with gamereview=gamereview %}
+					{% for gitem,range in gamereview %}
+					    <div class="card mb-4">
+							<img class="card-img-top" src="{{gitem.0.game.image.url}}" alt="Card image cap">
+							<div class="card-body">
+                              <a href="{% url 'games:review_detail' gitem.0.slug gitem.0.game.id %}">
+                              <h2 class="card-title">Game: {{gitem.0.game.name}}</h2>
+							  </a>
+							  <hr style="border:3px solid #f1f1f1">
+							  <p class="card-text">{{gitem.0.game.description}}</p>
+							   <hr style="border:3px solid #f1f1f1">
+						      
+							</div>
+							<div class="card-footer text-muted">
+								Posted on {{review.date_published}} by
+								<a href="{% url 'accounts:account_view' gitem.0.author.username %}">{{gitem.0.author.first_name}} {{gitem.0.author.last_name}}</a>, last updated on {{gitem.0.date_updated}}
+							</div>
+									
 						</div>
-					{% endfor %}
+
+					{% endfor %}		
 				</div>
+
+							
+					
+					
+			
 
 				<!-- Episode Review -->
-				{%if episodereview%}
+				{% if episodereview %}
 				<h1>Episode Reviews</h1>
-				{%endif%}
+				{% endif %}
+					
 				<div class="container">
-					{% for episodereview in episodereview %}
-						<div class="review-post-container">
-							{% include 'snippets/home_post_episode_review.html' with episodereview=episodereview %}
+					{% for eitem,range in episodereview%}
+					    <div class="card mb-4">
+							<img class="card-img-top" src="{{eitem.0.episode.image.url}}" alt="Card image cap">
+							<div class="card-body">
+                              <a href="{% url 'episode:review_detail' eitem.0.slug eitem.0.episode.id %}">
+                              <h2 class="card-title">Game: {{eitem.0.episode.name}}</h2>
+							  </a>
+							  <hr style="border:3px solid #f1f1f1">
+							  <p class="card-text">{{eitem.0.episode.description}}</p>
+							   <hr style="border:3px solid #f1f1f1">
+						      
+							</div>
+									
 						</div>
+
 					{% endfor %}
-				</div>
-
+			    </div>
 			</div>
+		{% endif %}		
+				
 
-		     {% endif %}
+		    
 		</div>
 
 		   
@@ -124,16 +176,5 @@
 
 {% endblock content %}
 
-{% block search %}
-	{% if not moviereview and not gamereview and not episodereview %}
 
-	<div class="container">
-		<div class="row">
-			<div class="review-post-container">
-				{% include 'snippets/search_list.html' %}
-			</div>
-		</div>
-	</div>
 
-	{% endif %}
-{% endblock search %}

@@ -1,36 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row">
-  <div class="col-6">
-    <div class="info">
-      <div class="card card-body">
-          <h1><b>{{user.first_name}} {{user.last_name}}<b></b></h1>
-          <br>
-          <br>
-          <h4><b>Contact</b></h4>
-          <br>
-          <h5><b>User Email: </b>{{user.email}}</h5>
-          <br>
-          <h5><b>User Date of birth: </b>{{user.dob}}</h5>
-          <br>
-
-      </div>
-  </div>
-</div>
 
 {% if movie_review or game_review or episode_review %}
 <style>
-  .info{
-  margin-left: 10px;
-  padding: 5px;
-  }
-  
-  .row{
-    margin-left: 50px;
-    padding:10px;
-  }
-
   .h3{
     text-align: center;
   }

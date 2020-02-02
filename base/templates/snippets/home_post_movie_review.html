@@ -21,11 +21,7 @@
 				{% endif %}
 			</div>
 			<div class="card-footer text-muted">
-				<p>Last updated on {{moviereview.date_updated}} by
-					<a href="{% url 'accounts:account_view' moviereview.author.username %}">
-						{{moviereview.author.first_name}} {{moviereview.author.last_name}}
-					</a>
-				</p>
+			  Updated on {{moviereview.date_updated}} by {{moviereview.author}}
 			</div>
 		</div>
 	</div>

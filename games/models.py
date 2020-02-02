@@ -6,6 +6,7 @@ from django.utils.text import slugify
 from django.conf import settings
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 def upload_location(instance, filename):
     file_path = 'games/{game_name}/{filename}'.format(
@@ -24,14 +25,14 @@ class Game(models.Model):
     publication =   models.ForeignKey(Publication, on_delete=models.CASCADE, null=True, blank=True)
     image =         models.ImageField(upload_to=upload_location, null=False, blank=False)
     avgrating =     models.DecimalField(default=0, max_digits=4, decimal_places=2)
-
+ 
     def __str__(self):
         return self.name
 
 class GameReview(models.Model):
     title =              models.CharField(max_length=500, null=False, blank=False)
     body =               models.CharField(max_length=500, null=False, blank=False)
-    rating =             models.IntegerField(default=1)
+    rating =             models.IntegerField(default=1,validators=[MinValueValidator(0), MaxValueValidator(10)])
     date_published =     models.DateTimeField(auto_now_add=True, verbose_name="Date Reviewed")
     date_updated =       models.DateTimeField(auto_now=True, verbose_name="Last Updated")
     author =             models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

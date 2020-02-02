@@ -160,7 +160,7 @@
 </style>
 <script type="text/javascript">
 	document.getElementById("id_q").value = "{{query}}"
-	document.getElementById("id_q").onsubmit = "{% url 'base:home' %}"
+	document.getElementById("id_q").onsubmit = "{% url 'base:search' %}"
 </script>
 
 <!-- Header -->
@@ -173,7 +173,7 @@
 	  </button>
 
 	  
-	  <form class="form-inline my-5 my-lg-0 pl-4" method="get" action="{% url 'base:home' %}">
+	  <form class="form-inline my-5 my-lg-0 pl-4" method="get" action="{% url 'base:search' %}">
 		<div class="search__wrapper">
 			<input type="text" name="q" id="id_q" placeholder="Search for..." class="search__field">
 			<button type="submit" class="fa fa-search search__icon"></button>

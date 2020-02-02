@@ -7,6 +7,7 @@ from accounts.views import (
         must_authenticate_view,
         account_view,
         feed_view,
+        gitlogin_view,
 )
 
 app_name='accounts'
@@ -19,4 +20,5 @@ urlpatterns = [
     path('must_authenticate', must_authenticate_view, name="must_authenticate"),
     path('profile/<slug>/', account_view, name="account_view"),
     path('feed/',feed_view, name="feed_view"),
+    path('accounts/profile/',gitlogin_view,name="gitlogin_view"),
 ]

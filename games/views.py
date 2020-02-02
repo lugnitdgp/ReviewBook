@@ -25,13 +25,13 @@ def give_game_review(request, game_id):
             obj.author = user
             obj.save()
             form = GiveReviewForm()
-            return redirect('games:review_detail', obj.slug)
+            return redirect('games:review_detail', obj.slug, game_id)
 
         context['form']=form
 
         return render(request, 'give_game_review.html', context)
     else:
-        return redirect('games:review_detail', review[0].slug)
+        return redirect('games:review_detail', review[0].slug, game_id)
 
 def select_game(request):
     games = Game.objects.all()
@@ -48,10 +48,11 @@ def details(request,game_id):
     game= get_object_or_404(Game,pk=game_id)
     return render(request,'games/details.html',{'game':game})
 
-def review_detail(request, slug):
+def review_detail(request, slug,game_id):
     context = {}
     review = get_object_or_404(GameReview, slug=slug)
-    star = get_object_or_404(Game)
+
+    star = get_object_or_404(Game, id=game_id)
     count=int(star.avgrating)
     context['review']=review
     context['range']=range(1,count)
@@ -79,7 +80,6 @@ def edit_review(request, slug):
             return redirect('base:home')
     form = UpdateReviewForm(
             initial = {
-                    "title": review.title,
                     "body": review.body,
                     "rating": review.rating,
                 } 

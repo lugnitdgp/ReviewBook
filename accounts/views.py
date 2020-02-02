@@ -51,6 +51,7 @@ def login_view(request):
                 login(request, user)
                 return redirect("base:home")
 
+
     else:
         form=AccountAuthenticationForm()
 
@@ -74,6 +75,8 @@ def account_view(request, slug):
     context['user'] = author
 
     return render(request, "account_view.html", context)
+def gitlogin_view(request):
+    return render(request, "account_view.html",{})
 
 def must_authenticate_view(request):
     return render(request, 'must_authenticate.html', {})
