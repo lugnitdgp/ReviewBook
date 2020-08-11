@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from accounts.models import Account,UserFollow
+from accounts.models import Account
 
 class AccountAdmin(UserAdmin):
     list_display = ('email', 'username','date_joined','last_login','first_name','last_name','is_admin')
@@ -12,4 +12,3 @@ class AccountAdmin(UserAdmin):
     fieldsets = ()
 
 admin.site.register(Account, AccountAdmin)
-admin.site.register(UserFollow)

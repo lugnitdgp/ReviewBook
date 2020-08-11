@@ -6,7 +6,7 @@ from django.urls import reverse
 from games.models import GameReview
 from movies.models import MovieReview
 from series.models import EpisodeReview
-from accounts.models import UserFollow, Account
+from accounts.models import Account
 from base.views import get_queryset
 
 def registration_view(request):
@@ -63,8 +63,34 @@ def account_view(request, slug):
         return redirect("accounts:must_authenticate")
 
     context = {}
-
     author = Account.objects.get(username=slug)
+
+    if request.POST:
+        follow = 0
+        list = request.user.following.all()
+        if author in list:
+            request.user.following.remove(author)
+            request.user.followingcount-=1
+            author.followercount-=1
+            follow = 0
+        else:
+            request.user.following.add(author)
+            request.user.followingcount+=1
+            author.followercount+=1
+            follow = 1
+        context['follow']=follow
+    else:
+        if author != request.user:
+            follow = 0
+            list = request.user.following.all()
+            if author in list:
+                follow = 1
+            context['follow']=follow
+    #following = author.following.length()
+    #followers = author.followers.length()
+    context['following']=author.followingcount
+    context['followers']=author.followercount
+
     movie_review = MovieReview.objects.filter(author=author)
     game_review = GameReview.objects.filter(author=author)
     episode_review = EpisodeReview.objects.filter(author=author)

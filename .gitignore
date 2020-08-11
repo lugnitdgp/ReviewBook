@@ -11,3 +11,17 @@ db.sqlite3
 media
 
 media_cdn
+
+static
+
+static_cdn
+
+base/migrations/00*
+
+accounts/migrations/00*
+
+games/migrations/00*
+
+movies/migrations/00*
+
+series/migrations/00*

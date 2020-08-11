@@ -14,6 +14,20 @@
           <br>
           <h5><b>User Date of birth: </b>{{user.dob}}</h5>
           <br>
+          <form method="post">
+          {% csrf_token %}
+          {% if request.user != user %}
+            {% if follow %}
+              <button type="submit" id="follow">Unfollow</button>
+            {% else %}
+              <button type="submit" id="follow">Follow</button>
+            {% endif %}
+          {% endif %}
+          </form>
+          <br>
+          <h5><b>Following:<b> {{following}}</h5>
+          <br>
+          <h5><b>Followers:<b> {{followers}}</h5>
 
       </div>
   </div>
@@ -25,7 +39,7 @@
   margin-left: 10px;
   padding: 5px;
   }
-  
+
   .row{
     margin-left: 50px;
     padding:10px;
@@ -112,5 +126,8 @@
 </div>
 
 {% endif %}
+<script type="text/javascript">
+  document.getElementById("follow").onclick = "{% url 'accounts:account_view' user.username %}"
+</script>
 
 {% endblock content %}
