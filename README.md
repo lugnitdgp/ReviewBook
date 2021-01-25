@@ -16,7 +16,7 @@ A social media app for movies, games and tv series reviews
 
     ```
 
-@. Create a **virtual environment** with venv (install virtualenv, if its not installed).
+2. Create a **virtual environment** with venv (install virtualenv, if its not installed).
 
     ```
     python -m venv env
