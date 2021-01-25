@@ -34,8 +34,6 @@ class MyAccountManager(BaseUserManager):
                 password=password,
                 first_name=first_name,
                 last_name=last_name,
-                followercount=0,
-                followingcount=0,
         )
 
         user.is_admin=True
@@ -57,8 +55,8 @@ class Account(AbstractBaseUser):
     last_name =    models.CharField(max_length=100)
     dob =          models.DateField(null=True)
     following = models.ManyToManyField("self", symmetrical=False)
-    followercount = models.IntegerField()
-    followingcount = models.IntegerField()
+    followercount = models.IntegerField(blank=True, null=True)
+    followingcount = models.IntegerField(blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username','first_name','last_name']
