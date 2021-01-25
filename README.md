@@ -9,18 +9,17 @@ A social media app for movies, games and tv series reviews
 ##  Starting the Project
 
 
-1. Create a **virtual environment** with venv (install virtualenv, if its not installed).
+1. Clone the project in the virtual environment directory.
 
     ```
-    venv reviewbook
-
-    ```
-
-2. Clone the project in the virtual environment directory.
-
-    ```
-    cd freemex
     git clone https://github.com/lugnitdgp/ReviewBook.git
+
+    ```
+
+@. Create a **virtual environment** with venv (install virtualenv, if its not installed).
+
+    ```
+    python -m venv env
 
     ```
 
@@ -28,13 +27,13 @@ A social media app for movies, games and tv series reviews
 
     #### For Linux/Mac OSX   
     ```
-    source bin/activate
+    source env/bin/activate
 
     ```
 
     #### For Windows
     ```
-    .\Scripts\activate
+    .env\Scripts\activate
 
     ```
 
