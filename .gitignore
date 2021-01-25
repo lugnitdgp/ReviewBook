@@ -25,3 +25,7 @@ games/migrations/00*
 movies/migrations/00*
 
 series/migrations/00*
+
+.vscode 
+
+env
