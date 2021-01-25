@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'movies',
     'series',
     'crispy_forms',
+    'social_django',
 
 ]
 
