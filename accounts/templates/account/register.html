@@ -1,8 +1,36 @@
 {% extends 'base.html' %}
-
 {% block content %}
+<style type="text/css">
+	#registration-form{
+		width: 80%;
+		margin: auto;
+		padding: 25px;
+		border-radius: 30px;
+		background: #e6e2e2;
+	}
+  input{
+    border:none;
+    padding:3px;
+    border-radius: 5px;
+    background-color: #fafafa;
+  }
+	#register-btn{
+		background: #007bff;
+		color: #fff;
+		font-weight: 600;
+		padding: 10px 10px;
+		border-radius: 5px;
+		border:none;
+		outline: none;
+		margin: auto;
+	}
+	.reg-btn-holder{
+		justify-content: center;
+		display: flex;
+    }
+</style>
 <br>
-<h2 style="text-align: center;">Register</h2>
+<h2 style="text-align: center; font-weight:600;">Register</h2>
 <form method="post" id="registration-form">{% csrf_token %}
   {% for field in registration_form %}
     <p>
