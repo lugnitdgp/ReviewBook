@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h2>Register</h2>
-<form method="post">{% csrf_token %}
+<br>
+<h2 style="text-align: center;">Register</h2>
+<form method="post" id="registration-form">{% csrf_token %}
   {% for field in registration_form %}
     <p>
       {{field.label_tag}}
@@ -18,8 +18,10 @@
       {% endfor %}
     </p>
   {% endfor %}
-  <button type="submit">Register</button>
-
+  <div class="reg-btn-holder">
+    <button type="submit" id="register-btn">Register</button>
+  </div>
+  
 </form>
 
 {% endblock content %}
