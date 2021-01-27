@@ -2,54 +2,116 @@
 {% block content %}
 <style type="text/css">
 	#registration-form{
-		width: 80%;
+		max-width: 750px;
+    width: 70%;;
 		margin: auto;
 		padding: 25px;
 		border-radius: 30px;
 		background: #e6e2e2;
+    text-align: center;
 	}
   input{
     border:none;
     padding:3px;
+    min-width: 70%;
     border-radius: 5px;
+    margin-left: 10px;
     background-color: #fafafa;
+    
   }
-	#register-btn{
+  .input-holder{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  .field-label{
+    flex: 1;
+    text-align: right;
+  }
+  .field-input{
+    flex: 2;
+    text-align: center;
+  }
+	
+  #register-btn{
 		background: #007bff;
 		color: #fff;
 		font-weight: 600;
 		padding: 10px 10px;
 		border-radius: 5px;
+    width: fit-content;
 		border:none;
 		outline: none;
-		margin: auto;
+		margin-right: 20px;
 	}
 	.reg-btn-holder{
 		justify-content: center;
 		display: flex;
+    vertical-align: center;
+    }
+    #register-nav-btn{
+      height: 0px;
+      width: 0px;
+      visibility: hidden;
+    }
+    #already-reg{
+      width:fit-content;
+      background: #007bff;
+      color: #fff;
+      font-weight: 600;
+      padding: 10px 10px;
+      border-radius: 5px;
+      border:none;
+      outline: none;
+      margin-top: 20px;
+    }
+    @media only screen and (max-width: 600px){
+      .input-holder{
+        flex-direction: column;
+      }
+      .field-label{
+        flex: 1;
+        text-align: center;
+      }
+      .field-input{
+        flex: 1;
+        text-align: center;
+      }
+      input{
+        width: 100%;
+        margin-left: 0px;
+      }
+      #registration-form{
+        padding:10px;
+      }
     }
 </style>
 <br>
 <h2 style="text-align: center; font-weight:600;">Register</h2>
-<form method="post" id="registration-form">{% csrf_token %}
+<div id="registration-form">
+<form method="post">{% csrf_token %}
   {% for field in registration_form %}
-    <p>
-      {{field.label_tag}}
-      {{field}}
-
-      {% if field.help_text %}
-        <small style="color: grey;">{{field.help_text}}</small>
-      {% endif %}
+  <div class="form-inputs">
+      <div class="input-holder">
+        <div class="field-label">{{field.label_tag}}</div>
+        <div class="field-input">{{field}}</div>
+      </div>
+      <!-- {% if field.help_text %}
+        <small style="color: rgb(100, 99, 99);text-align: left; list-style-type: none;">{{field.help_text}}</small>
+      {% endif %} -->
 
       {% for error in field.errors %}
         <p style="color: red;">{{error}}</p>
       {% endfor %}
-    </p>
+    </div>
   {% endfor %}
   <div class="reg-btn-holder">
     <button type="submit" id="register-btn">Register</button>
   </div>
-  
 </form>
+<a href="/login/"><button id="already-reg">Already Registered</button></a>  
+</div>
 
 {% endblock content %}
