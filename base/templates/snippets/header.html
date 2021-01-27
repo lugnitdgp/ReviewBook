@@ -132,8 +132,12 @@
   opacity: 1;
   visibility: visible !important;
 }
-
-
+/* Register Button on the Navbar */
+#register-nav-btn{
+  color: #ffffff;
+  background: #007bff;
+  font-weight: 600;
+}
 
 
 </style>
@@ -180,7 +184,7 @@
 				<a class="text-white nav-link" href="{% url 'accounts:login' %}">Login</a>
 			</li>
 			<li class="nav-item active">
-				<a class="btn btn-outline-primary" href="{% url 'accounts:register' %}">Register</a>
+				<a class="btn btn-outline-primary" id="register-nav-btn" href="{% url 'accounts:register' %}">Register</a>
 			</li>
 		{% endif %}
 		</ul>
