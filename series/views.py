@@ -80,7 +80,7 @@ def edit_review(request, slug):
     return render(request, 'series/edit_review.html', context)
 
 #add series to the database by any user
-def reccomend_to_add(request, slug):
+def reccomend_to_add(request):
     context = {}
     user = request.user    
     if not user.is_authenticated:
@@ -93,5 +93,6 @@ def reccomend_to_add(request, slug):
             obj.save()
             return redirect('series:index')
     else:
-            form = AddMovieForm()
+            form = AddSeriesForm()
+    context['form'] = form
     return render(request, 'series/reccomend_to_add.html', context)    

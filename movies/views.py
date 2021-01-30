@@ -85,13 +85,14 @@ def edit_review(request, slug):
     return render(request, 'movies/edit_review.html', context)
 
 #add movie to the database by any user
-def reccomend_to_add(request, slug):
+def reccomend_to_add(request):
     context = {}
     user = request.user    
     if not user.is_authenticated:
         return redirect('accounts:must_authenticate')
     if request.method == 'POST':
         form = AddMovieForm(request.POST or None)
+        Movie.show = True
         if form.is_valid():
             obj = form.save(commit=False)
             obj.author = user
@@ -99,6 +100,8 @@ def reccomend_to_add(request, slug):
             return redirect('movies:index')
     else:
             form = AddMovieForm()
+    
+    context['form'] = form
     return render(request, 'movies/reccomend_to_add.html', context)    
             
 

@@ -89,7 +89,7 @@ def edit_review(request, slug):
     return render(request, 'games/edit_review.html', context)
 
 #add game to the database by any user
-def reccomend_to_add(request, slug):
+def reccomend_to_add(request):
     context = {}
     user = request.user    
     if not user.is_authenticated:
@@ -102,5 +102,6 @@ def reccomend_to_add(request, slug):
             obj.save()
             return redirect('games:index')
     else:
-            form = AddMovieForm()
+            form = AddGameForm()
+    context['form'] = form
     return render(request, 'games/reccomend_to_add.html', context)    

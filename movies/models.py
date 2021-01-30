@@ -26,6 +26,7 @@ class Movie(models.Model):
     publication =  models.ForeignKey(Publication,on_delete=models.CASCADE, null=True, blank=True)
     image =        models.ImageField(upload_to=upload_location, null=False, blank=False)
     avgrating =    models.DecimalField(default=0, max_digits=4, decimal_places=2)
+    show =         models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
