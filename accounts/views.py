@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from accounts.forms import RegistrationForm, AccountAuthenticationForm
 from django.urls import reverse
 
+
 from games.models import GameReview
 from movies.models import MovieReview
 from series.models import EpisodeReview
@@ -56,6 +57,7 @@ def login_view(request):
 
     context['login_form'] = form
     return render(request, 'account/login.html', context)
+
 
 def account_view(request, slug):
 
