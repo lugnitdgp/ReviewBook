@@ -1,5 +1,6 @@
 from django.urls import path, include
 
+from accounts import views
 from accounts.views import (
         registration_view,
         logout_view,
