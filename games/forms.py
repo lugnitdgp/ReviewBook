@@ -27,3 +27,9 @@ class UpdateReviewForm(forms.ModelForm):
             
 
         return review
+
+class AddGameForm(forms.ModelForm):
+    class Meta:
+        model = Game
+        fields = ['name', 'releasedate', 'description', 'genre', 'size', 'publication', 'image']
+

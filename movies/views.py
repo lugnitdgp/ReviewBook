@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404,render,redirect
 from django.urls import reverse
 from movies.models import MovieReview, Movie
-from movies.forms import GiveReviewForm, UpdateReviewForm
+from movies.forms import GiveReviewForm, UpdateReviewForm, AddMovieForm
 from accounts.models import Account
 from base import views
 from movies.models import MovieReview, Movie
@@ -84,4 +84,21 @@ def edit_review(request, slug):
     context['form'] = form
     return render(request, 'movies/edit_review.html', context)
 
+#add movie to the database by any user
+def reccomend_to_add(request, slug):
+    context = {}
+    user = request.user    
+    if not user.is_authenticated:
+        return redirect('accounts:must_authenticate')
+    if request.method == 'POST':
+        form = AddMovieForm(request.POST or None)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.author = user
+            obj.save()
+            return redirect('movies:index')
+    else:
+            form = AddMovieForm()
+    return render(request, 'movies/reccomend_to_add.html', context)    
+            
 

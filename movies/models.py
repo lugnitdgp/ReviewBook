@@ -94,6 +94,8 @@ class MovieReview(models.Model):
         movie.avgrating = movie.totalrating/movie.totalreview
         movie.save()
 
+
+
 @receiver(post_delete, sender=Movie)
 def submission_delete(sender, instance, **kwargs):
     instance.image.delete(False)

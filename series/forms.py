@@ -1,6 +1,6 @@
 from django import forms
 
-from series.models import EpisodeReview
+from series.models import EpisodeReview, Series
 
 class GiveReviewForm(forms.ModelForm):
 
@@ -24,3 +24,9 @@ class UpdateReviewForm(forms.ModelForm):
             review.save()
 
         return review
+
+class AddSeriesForm(forms.ModelForm):
+    class Meta:
+        model = Series
+        fields = ['name', 'release_date', 'description', 'star', 'genre', 'director', 'running_time', 'publication', 'image']
+

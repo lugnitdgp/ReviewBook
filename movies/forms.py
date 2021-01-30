@@ -24,3 +24,8 @@ class UpdateReviewForm(forms.ModelForm):
             review.save()
 
         return review
+
+class AddMovieForm(forms.ModelForm):
+    class Meta:
+        model = Movie
+        fields = ['name', 'releasedate', 'description', 'stars', 'genre', 'director', 'runningtime', 'publication', 'image']

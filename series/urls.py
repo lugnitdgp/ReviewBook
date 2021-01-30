@@ -6,6 +6,7 @@ from series.views import(
     select_episode,
     review_detail,
     edit_review,
+    reccomend_to_add
 )
 
 app_name='series'
@@ -16,4 +17,5 @@ urlpatterns = [
     path('selectseries/selectepisode/<int:series_id>/', select_episode, name="select_episode"),
     path('<slug>/edit', edit_review, name="edit_review"),
     path('<slug>/', review_detail, name="review_detail"),
+    path('reccomendmovies/', reccomend_to_add, name="reccomend_to_add" ),
 ]

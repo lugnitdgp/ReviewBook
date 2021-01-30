@@ -6,6 +6,7 @@ from movies.views import(
     details,
     review_detail,
     edit_review,
+    reccomend_to_add
 )
 
 app_name='movies'
@@ -17,4 +18,5 @@ urlpatterns = [
     path('<slug>/edit', edit_review, name="edit_review"),
     path('', index, name="index"),
     path('<int:movie_id>', details, name="details"),
+    path('reccomendmovies/', reccomend_to_add, name="reccomend_to_add" ),
 ]

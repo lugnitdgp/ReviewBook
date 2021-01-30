@@ -6,6 +6,7 @@ from games.views import(
     details,
     review_detail,
     edit_review,
+    reccomend_to_add
 )
 
 app_name='games'
@@ -17,4 +18,5 @@ urlpatterns = [
     path('<slug>/', review_detail, name="review_detail"),
     path('<slug>/edit', edit_review, name="edit_review"),
     path('', index,name='index'),
+    path('reccomendmovies/', reccomend_to_add, name="reccomend_to_add" ),
 ]

@@ -13,3 +13,4 @@ class MovieAdmin(admin.ModelAdmin):
 admin.site.register(Movie, MovieAdmin)
 admin.site.register(MovieReview)
 admin.site.register(MovieFollow)
+
