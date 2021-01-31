@@ -28,5 +28,5 @@ class UpdateReviewForm(forms.ModelForm):
 class AddSeriesForm(forms.ModelForm):
     class Meta:
         model = Series
-        fields = ['name', 'release_date', 'description', 'star', 'genre', 'director', 'running_time', 'publication', 'image']
+        fields = ['name', 'release_date', 'description', 'star', 'genre', 'director', 'running_time', 'total_episode', 'total_season', 'nor', 'publication', 'image']
 

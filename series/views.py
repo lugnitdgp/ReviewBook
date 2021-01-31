@@ -90,8 +90,11 @@ def reccomend_to_add(request):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.author = user
+            obj.total_review = 0
+            obj.avg_review = 0
+            obj.show = False
             obj.save()
-            return redirect('series:index')
+            return redirect('base:home')
     else:
             form = AddSeriesForm()
     context['form'] = form

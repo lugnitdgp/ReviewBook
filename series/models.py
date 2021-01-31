@@ -35,7 +35,7 @@ class Series(models.Model):
     publication =    models.ForeignKey(Publication, on_delete=models.CASCADE, null=True, blank=True)
     image =          models.ImageField(upload_to=upload_location_series, null=False, blank=False)
     avg_review =     models.DecimalField(default=0, max_digits=4, decimal_places=2)
-    show =         models.BooleanField(default=False)
+    show =         models.BooleanField(null=True, blank= True)
 
     def __str__(self):
         return self.name

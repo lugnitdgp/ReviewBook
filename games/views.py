@@ -99,8 +99,12 @@ def reccomend_to_add(request):
         if form.is_valid():
             obj = form.save(commit=False)
             obj.author = user
+            obj.totalreview = 0
+            obj.totalrating = 0
+            obj.avgrating = 0
+            obj.show = False
             obj.save()
-            return redirect('games:index')
+            return redirect('base:home')
     else:
             form = AddGameForm()
     context['form'] = form
