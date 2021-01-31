@@ -1,17 +1,47 @@
-<style type="text/css">
-	.footer{
-		min-height: 40px;
-		position: fixed;
- 		left: 0;
-  	bottom: 0;
-  	width: 100%;
-	}
-</style>
+<html>
+
+<head>
+    <style>
+        .footer {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            min-height: 40px;
+            background: linear-gradient(15deg, #cc2b5e 0%, #753a88 100%);
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        .footer:hover {
+            background: linear-gradient(15deg, #753a88 0%, #cc2b5e 100%);
+            box-shadow: 0 0 10px linear-gradient(15deg, #753a88 0%, #cc2b5e 100%);
+        }
+        
+        .m-auto {
+            position: relative;
+            display: inline-block;
+            color: rgb(241, 245, 26);
+            letter-spacing: 4px;
+            text-decoration: none;
+            overflow: hidden;
+            transition: 0.2s;
+        }
+        
+        .m-auto:hover {
+            color: black;
+            background: linear-gradient(15deg, #753a88 0%, #cc2b5e 100%);
+        }
+    </style>
+</head>
 
 <!-- Footer -->
 <br>
-<div class="footer d-flex flex-row align-items-center bg-white border-top shadow-lg">
-	<p class="m-auto">ReviewBook | 2019</p>
+<div class="footer d-flex flex-row align-items-center border-top shadow-lg">
+    <p class="m-auto" style="font-size: 15pt; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"> ReviewBook | 2021</p>
 </div>
 <!-- End Footer -->
 
@@ -19,3 +49,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</html>
