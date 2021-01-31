@@ -16,6 +16,8 @@
     
     .navbar-light .navbar-brand {
         color: black;
+        padding: 20px;
+        font-style: italic;
     }
     
     .nav-item {
@@ -158,17 +160,17 @@
         text-indent: 30px;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         opacity: 1;
-        text-shadow: 1.5px 1.5px cyan;
+        text-shadow: 1.5px 1.5px blueviolet;
     }
     
     .bg-dark {
-        background-image: linear-gradient(15deg, #1f1e85 0%, #19b34c 100%);
+        background-image: linear-gradient(15deg, #cc2b5e 0%, #753a88 100%);
     }
     
     .nav-link {
         color: black;
         font-size: medium;
-        display: flex;
+        display: inline-flex;
         justify-content: space-around;
         align-items: center;
         margin-left: auto;
@@ -177,9 +179,9 @@
     .navbar-right {
         width: 230px;
         margin: 15px;
-        display: flex;
         margin-right: 30px;
         justify-content: space-evenly;
+        position: relative;
     }
     
     .navbar-brand {
@@ -202,7 +204,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <a class="navbar-brand pr-4" href="{% url 'base:home' %}" style=" color: #dee03a; font-weight: bold; stroke-width: 6px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">  Reviewbook</a>
+    <a class="navbar-brand pr-4" href="{% url 'base:home' %}" style=" color: rgb(241, 245, 26); font-weight: bold; stroke-width: 6px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">  Reviewbook</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	  </button>
@@ -214,7 +216,7 @@
             <button type="submit" class="fa fa-search search__icon"></button>
         </div>
         <div>
-            <span class="navbar-text" style="color: rgb(41, 223, 50); font-size: medium ; font-weight: bold;">
+            <span class="navbar-text" style="color: rgb(255, 255, 255); font-size: medium ; font-weight: bold;">
                 Welcome to NIT-DGP Reviewbook!!!
               </span>
         </div>
