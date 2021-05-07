@@ -67,6 +67,6 @@ A social media app for movies, games and tv series reviews
 ReviewBook uses the following technologies:
 
 + HTML/CSS/JavaScript
-+ Pyhton(Django)
++ Python(Django)
 
 If you want to contribute to this project, then have a look [here](https://github.com/lugnitdgp/ReviewBook/blob/master/CONTRIBUTING.md)
